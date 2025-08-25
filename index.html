@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi razón favorita 💓</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #ab3ed8;     /* Violeta pastel */
+      --secondary: #5dc1b9;   /* Verde agua */
+      --accent: #8ae0db;      /* Aqua claro */
+      --bg: #b8f0ed;          /* Celeste pastel */
+      --card: #fffbe6;        /* Tarjetas */
+      --locked: #f5f5f5;      /* Bloqueado */
+      --text: #7f00b2;        /* Morado intenso */
+      --shadow: 0 2px 10px #8ae0db; /* Sombra acorde al aqua */
+      --btn: #7f00b2;         /* Botón morado intenso */
+      --btn-text: #b8f0ed;    /* Texto botón en celeste pastel */
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+    }
+
+
+header, footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: var(--primary);
+  color: #fff;
+  border-bottom: 2px solid #fff9db;
+  letter-spacing: 1px;
+}
+    header { border-radius: 0 0 2rem 2rem; }
+    footer { border-radius: 2rem 2rem 0 0; margin-top: 2rem; border-top: 2px solid #fff9db; border-bottom: none; }
+
+    h1 {
+      margin: 0.5rem 0;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      text-shadow: 0 1px 0 #fff9db;
+    }
+
+    main {
+      min-height: 80vh;
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 0.7rem 2rem 0.7rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dia-container {
+      background: var(--card);
+      border-radius: 2rem;
+      box-shadow: var(--shadow);
+      padding: 3.5rem 2rem 2.7rem 2rem;
+      min-height: 440px;
+      width: 100%;
+      max-width: 720px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn .9s cubic-bezier(.5,.9,.2,1.1) both;
+      margin-bottom: 2rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.97) translateY(22px);}
+      to   { opacity: 1; transform: scale(1) translateY(0);}
+    }
+
+    @media (max-width: 700px) {
+      .dia-container {
+        min-height: 330px;
+        max-width: 100vw;
+        padding: 2rem 0.5rem 2rem 0.5rem;
+        border-radius: 1.2rem;
+      }
+      main {
+        max-width: 99vw;
+        padding: 1.2rem 0.1rem 1.3rem 0.1rem;
+      }
+    }
+
+    .frase-dia {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2.2rem;
+      text-align: center;
+      line-height: 1.18;
+    }
+    @media (max-width: 700px) {
+      .frase-dia { font-size: 1.3rem; margin-bottom: 1.6rem; }
+    }
+
+    .video-dia {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 1.3rem;
+      overflow: hidden;
+      margin-bottom: 1.1rem;
+      box-shadow: 0 3px 16px #ffe06660;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-dia iframe {
+      width: 100%;
+      height: 340px;
+      border: 0;
+    }
+    @media (max-width: 700px) {
+      .video-dia iframe { height: 200px; }
+    }
+
+    .video-fallback {
+      width: 100%;
+      max-width: 520px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background: var(--locked);
+      border-radius: 1.2rem;
+      padding: 1.2rem;
+      margin-top: 0.8rem;
+      box-shadow: 0 3px 16px #ffe06640;
+      font-size: 1.05rem;
+      color: #a48c35;
+      text-align: center;
+    }
+
+    .video-fallback img {
+      width: 86%;
+      max-width: 520px;
+      border-radius: 1rem;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 2px 10px #00000020;
+    }
+
+    .video-fallback .btn-open-drive {
+      background: var(--accent);
+      color: #735f32;
+      border: none;
+      border-radius: 2rem;
+      padding: 0.7rem 1.6rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 1px 7px #ffd6e055;
+      transition: background 0.17s;
+    }
+    .video-fallback .btn-open-drive:hover { background: var(--primary); color: #a48c35; }
+
+    #mensaje-espera { font-size: 1.2rem; margin-top: 2rem; }
+
+    .nav-dias {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1.4rem;
+    }
+
+    .btn-dia {
+      background: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: 1.4rem;
+      padding: 0.6rem 1.3rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 1px 6px #ffd6e050;
+      transition: background 0.17s;
+    }
+    .btn-dia.active, .btn-dia:hover { background: var(--accent); color: #a48c35; }
+
+    .hearts-container { pointer-events: none; position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 9999; }
+    .heart {
+      position: absolute; width: 32px; height: 32px;
+      background: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/72x72/1f49b.png') no-repeat center / contain;
+      opacity: 0.7; animation: floatHearts 2.5s linear forwards;
+    }
+    @keyframes floatHearts {
+      0% { transform: translateY(0) scale(0.8) rotate(-10deg); opacity: 0.8; }
+      100% { transform: translateY(-80vh) scale(1.2) rotate(20deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mi razón favorita 💓</h1>
+    <div>Un detalle hecho con amor</div>
+  </header>
+
+  <main>
+    <div id="nav-dias" class="nav-dias"></div>
+
+    <section id="dia-container" class="dia-container">
+      <!-- Contenido del día se inyecta por JS -->
+    </section>
+
+    <div id="mensaje-espera" style="display:none; text-align:center;">
+      Aún no inicia. Vuelve pronto 💛
+    </div>
+  </main>
+
+  <footer>
+    Hecho con 💛
+  </footer>
+
+  <div id="hearts-container" class="hearts-container"></div>
+
+  <script>
+    // ====== CONFIGURA AQUÍ TUS DÍAS (ID o LINK DE GOOGLE DRIVE) ======
+    // Puedes poner solo el ID del archivo o cualquier enlace de Drive; el código extrae el ID.
+    const playlist = [
+      { phrase: "Día 1: Me encanta descubrir todo lo que te hace única.", drive: "https://drive.google.com/file/d/1EO0oU_lWMDeOy5S5u0NMQEdW5Yyx5HlJ/view?usp=drive_link" },
+      { phrase: "Día 2: Si el universo me puso en tu camino, fue por una razón.", drive: "https://drive.google.com/file/d/1xnV31_IQiOjlGrkNAHsw5V4tnjHpFwpj/view?usp=drive_link" },
+      { phrase: "Día 3: Cada vez que te miro, encuentro un nuevo motivo para sonreír.", drive: "https://drive.google.com/file/d/1cAuKhwSgOZTxfPPm8m6MzFc_9_lmsq5V/view?usp=drive_link" },
+      { phrase: "Día 4: Tu sonrisa tiene algo que me inspira todos los días.", drive: "https://drive.google.com/file/d/1v1qe1tuoQ9WIpodcGd1ob9i9udauloDE/view?usp=sharing" },
+      { phrase: "Día 5: Busco a alguien tan especial como tú.", drive: "https://drive.google.com/file/d/1b-2QW4yqExt6niHAk4z0YS0cJIiCyxA9/view?usp=sharing" },
+      { phrase: "Día 6: Tus ojos lindos me enamoran cada día.", drive: "https://drive.google.com/file/d/1map-oPwAtNlPrT8gUaOmoqZwa9JU0nkK/view?usp=drive_link" },
+      { phrase: "Día 7: Eres perfecta tal como eres.", drive: "https://drive.google.com/file/d/1ZgHvYlPfv_Jl2Y7APm-oOWwvpSHVgJu_/view?usp=drive_link" },
+      { phrase: "Día 8: Energía, deseo de estar juntos, alegría sencilla.", drive: "https://drive.google.com/file/d/1N8iI0OjmHKQ55xKZdIlAIEcbQ4IMHqlB/view?usp=drive_link" },
+      { phrase: "Día 9: Todo lo bueno eres tú.", drive: "https://drive.google.com/file/d/1Mzwwpb4tECSVhhdIp2bz7d7U9tEMH9vD/view?usp=drive_link" },
+      { phrase: "Día 10: Quiero pasar mis domingos a tu lado.", drive: "https://drive.google.com/file/d/1aT_4QpetS6Xn5k9r5TIVLNbErSLlyvJb/view?usp=drive_link" },
+      { phrase: "Día 11: Eres esa curita que llego en el momento justo.", drive: "https://drive.google.com/file/d/1pTowTbdl9DR0NAqEonFBDytw0_uKPWRb/view?usp=drive_link" },
+
+      { phrase: "Día 12: Eres ese rayo de luz que alumbra mis días.", drive: "https://drive.google.com/file/d/1D2OgeHYS2NYvDLea3d46kRXR_B8XIHj_/view?usp=drive_link" },
+      { phrase: "Día 13: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 14: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 15: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 16: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 17: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 18: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 19: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 20: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 21: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 22: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 23: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 24: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      { phrase: "Día 25: Quiero pintar una linda sonrisa en tu rostro cada día.", drive: "https://drive.google.com/file/d/1gG6DYpiMz1SYc5-rkMXDKOppNuVGEjet/view?usp=drive_link" },
+      // ...puedes seguir agregando hasta 60 o más
+    ];
+
+    // ====== UTILIDADES GOOGLE DRIVE ======
+    function getDriveId(input) {
+      if (!input) return null;
+      // formatos soportados:
+      // https://drive.google.com/file/d/FILE_ID/view
+      // https://drive.google.com/open?id=FILE_ID
+      // FILE_ID directo
+      const m1 = input.match(/\/d\/([A-Za-z0-9_-]+)/);
+      if (m1) return m1[1];
+      const m2 = input.match(/[?&]id=([A-Za-z0-9_-]+)/);
+      if (m2) return m2[1];
+      // si ya parece un id
+      if (/^[A-Za-z0-9_-]+$/.test(input)) return input;
+      return null;
+    }
+    function driveEmbedUrl(id) {
+      return `https://drive.google.com/file/d/${id}/preview`;
+    }
+    function driveViewUrl(id) {
+      return `https://drive.google.com/file/d/${id}/view`;
+    }
+    function driveThumbUrl(id) {
+      // Miniatura de alta resolución (si está disponible para el tipo de archivo)
+      return `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
+    }
+
+    // ====== ANIMACIÓN CORAZONES DÍA 31 ======
+    function throwHearts() {
+      const container = document.getElementById('hearts-container');
+      if (!container) return;
+      for(let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 95 + 'vw';
+        heart.style.bottom = '-40px';
+        heart.style.animationDelay = (Math.random() * 0.7) + 's';
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 2500);
+      }
+    }
+
+    // ====== RENDER DEL DÍA ======
+    function mostrarDia(idx) {
+      const info = playlist[idx];
+      const fileId = getDriveId(info.drive);
+
+      // HTML base (frase + contenedor de video + fallback)
+      document.getElementById('dia-container').innerHTML = `
+        <div class="frase-dia">${info.phrase}</div>
+        <div class="video-dia">
+          ${fileId ? `
+            <iframe
+              id="love-iframe"
+              src="${driveEmbedUrl(fileId)}"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            ></iframe>
+          ` : `
+            <div class="video-fallback" id="iframe-fallback" style="display:flex;">
+              <img src="https://i.imgur.com/fS5Zqom.png" alt="Frase de amor"/>
+              <div>El video no está configurado. ¡Pero igual quiero que leas la frase de hoy! 💛</div>
+            </div>
+          `}
+          <div class="video-fallback" id="iframe-fallback" style="display:none;">
+            <img src="${fileId ? driveThumbUrl(fileId) : 'https://i.imgur.com/fS5Zqom.png'}" alt="Vista previa"/>
+            <div style="margin-bottom:0.8rem;">No se pudo mostrar el video aquí.<br/>Ábrelo directamente en Google Drive.</div>
+            ${fileId ? `<a class="btn-open-drive" href="${driveViewUrl(fileId)}" target="_blank">Abrir en Drive</a>` : ''}
+          </div>
+        </div>
+      `;
+
+      // Detección de error de carga (algunos navegadores no disparan onerror para iframes de Drive)
+      setTimeout(() => {
+        const iframe = document.getElementById('love-iframe');
+        const fallback = document.getElementById('iframe-fallback');
+        if (iframe) {
+          const tooSmall = iframe.offsetHeight < 40 || iframe.offsetWidth < 40;
+          if (tooSmall) {
+            iframe.style.display = 'none';
+            fallback.style.display = 'flex';
+          }
+        }
+      }, 2000);
+
+      if (idx === 30) throwHearts();
+
+      // Actualizar estado de botones
+      const botones = navDias.querySelectorAll('.btn-dia');
+      botones.forEach((btn, i) => {
+        if (i === idx) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+    }
+
+    // ====== INICIALIZACIÓN Y NAVEGACIÓN ======
+    const containerEl = document.getElementById('dia-container');
+    const mensajeEspera = document.getElementById('mensaje-espera');
+    const navDias = document.getElementById('nav-dias');
+
+    // --- Fecha de hoy (hora local del navegador) ---
+    const MS_PER_DAY = 24 * 60 * 60 * 1000;
+    const today = new Date();
+    const todayYMD = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // sin hora
+
+    // --- Tomamos/guardamos la fecha de inicio (hoy = Día 1) ---
+    const LS_KEY = 'adventStartDate';
+    let startDateStr = localStorage.getItem(LS_KEY);
+    if (!startDateStr) {
+      localStorage.setItem(LS_KEY, todayYMD.toISOString());
+      startDateStr = localStorage.getItem(LS_KEY);
+    }
+    const startDate = new Date(startDateStr);
+
+    // --- Días transcurridos desde la fecha de inicio ---
+    let daysPassed = Math.floor(
+      (todayYMD - new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())) / MS_PER_DAY
+    ) + 1;
+
+    if (daysPassed < 1) {
+      // Aún no llega la fecha de inicio
+      containerEl.style.display = 'none';
+      navDias.style.display = 'none';
+      mensajeEspera.style.display = 'block';
+    } else {
+      // Límite superior = largo de playlist
+      const diaActual = Math.min(daysPassed, playlist.length);
+
+      function renderNavDias() {
+        navDias.innerHTML = "";
+        for (let i = 0; i < diaActual; i++) {
+          const btn = document.createElement('button');
+          btn.className = "btn-dia" + (i === diaActual - 1 ? " active" : "");
+          btn.textContent = `Día ${i + 1}`;
+          btn.onclick = () => mostrarDia(i);
+          navDias.appendChild(btn);
+        }
+      }
+
+      renderNavDias();
+      mostrarDia(diaActual - 1);
+      mensajeEspera.style.display = 'none';
+    }
+
+    // --- (Opcional) Reset manual de la fecha de inicio con un query param ?resetStart=1 ---
+    if (new URLSearchParams(location.search).get('resetStart') === '1') {
+      localStorage.removeItem(LS_KEY);
+      location.search = ''; // recarga sin el parámetro
+    }
+  </script>
+</body>
+</html>
